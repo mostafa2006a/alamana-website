@@ -1,12 +1,7 @@
-// إعدادات قابلة للتعديل: ضع رقم الواتساب وروابط السوشيال الحقيقية هنا
+// إعدادات قابلة للتعديل (روابط الهاتف والخريطة وفيسبوك مكتوبة في index.html)
 const CONFIG = {
-  whatsapp: '201050012321', // TODO: تأكيد رقم الواتساب (بصيغة دولية بدون +)
-  email: 'alamanawork2024@hotmail.com',
-  social: [
-    // TODO: أضف الروابط الحقيقية، مثال:
-    // { label: 'فيسبوك', url: 'https://facebook.com/...' },
-    // { label: 'إنستجرام', url: 'https://instagram.com/...' },
-  ],
+  whatsapp: '201050012321', // بصيغة دولية بدون +
+  email: 'info@alamana.win',
 };
 
 const waLink = (text = 'مرحبًا، أريد الاستفسار عن خدمات الأمانة') =>
@@ -14,14 +9,6 @@ const waLink = (text = 'مرحبًا، أريد الاستفسار عن خدما
 
 // روابط واتساب
 document.querySelectorAll('.js-wa').forEach((a) => { a.href = waLink(); });
-
-// السوشيال
-const social = document.getElementById('social');
-CONFIG.social.forEach(({ label, url }) => {
-  const a = document.createElement('a');
-  a.href = url; a.textContent = label; a.target = '_blank'; a.rel = 'noopener';
-  social.appendChild(a);
-});
 
 // السنة في الفوتر
 document.getElementById('year').textContent = new Date().getFullYear();
