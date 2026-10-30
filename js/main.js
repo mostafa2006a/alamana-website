@@ -76,34 +76,6 @@ document.getElementById('mailBtn').addEventListener('click', () => {
   }
 });
 
-// عدّاد الأرقام
-const counters = document.querySelectorAll('[data-count]');
-const runCounter = (el) => {
-  const target = Number(el.dataset.count);
-  const start = performance.now();
-  const step = (now) => {
-    const p = Math.min((now - start) / 1200, 1);
-    el.textContent = Math.round(target * p);
-    if (p < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-};
-
-// ظهور الأقسام عند التمرير
-const revealEls = document.querySelectorAll('.section__head, .card, .supply, .feature, .uses li, .stat, .about__text, .about__media, .crusher__media, .crusher__text');
-revealEls.forEach((el) => el.classList.add('reveal'));
-
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('is-visible');
-    if (entry.target.matches('[data-count]')) runCounter(entry.target);
-    io.unobserve(entry.target);
-  });
-}, { threshold: 0.15 });
-revealEls.forEach((el) => io.observe(el));
-counters.forEach((el) => io.observe(el));
-
 // معرض الصور
 const lightbox = document.getElementById('lightbox');
 const lbImg = lightbox.querySelector('img');
