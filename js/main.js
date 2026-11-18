@@ -104,15 +104,72 @@ const io = new IntersectionObserver((entries) => {
 revealEls.forEach((el) => io.observe(el));
 counters.forEach((el) => io.observe(el));
 
-// معرض الصور
+// معرض الصور: أسهم + لوحة مفاتيح
 const lightbox = document.getElementById('lightbox');
 const lbImg = lightbox.querySelector('img');
-document.querySelectorAll('#gallery img').forEach((img) => {
-  img.addEventListener('click', () => {
-    lbImg.src = img.src; lbImg.alt = img.alt;
-    lightbox.hidden = false;
+const lbCap = lightbox.querySelector('.lightbox__cap');
+const galleryImgs = [...document.querySelectorAll('#gallery img')];
+let lbIndex = 0;
+let lbOpener = null;
+
+const showLb = (i) => {
+  lbIndex = (i + galleryImgs.length) % galleryImgs.length;
+  const img = galleryImgs[lbIndex];
+  // أكبر نسخة WebP من الـ srcset (الصورة المصغّرة قد لا تكون اتحمّلت بعد)
+  const webp = img.parentElement.querySelector('source[type="image/webp"]');
+  lbImg.src = webp ? webp.srcset.split(',').pop().trim().split(' ')[0] : img.src;
+  lbImg.alt = img.alt;
+  lbCap.textContent = `${img.alt} — ${lbIndex + 1} / ${galleryImgs.length}`;
+};
+const openLb = (i) => {
+  lbOpener = document.activeElement;
+  showLb(i);
+  lightbox.hidden = false;
+  document.body.style.overflow = 'hidden';
+  lightbox.querySelector('.lightbox__close').focus();
+};
+const closeLb = () => {
+  if (lightbox.hidden) return;
+  lightbox.hidden = true;
+  document.body.style.overflow = '';
+  if (lbOpener) lbOpener.focus();
+};
+
+galleryImgs.forEach((img, i) => {
+  img.tabIndex = 0;
+  img.setAttribute('role', 'button');
+  img.setAttribute('aria-label', `عرض الصورة: ${img.alt}`);
+  img.addEventListener('click', () => openLb(i));
+  img.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(i); }
   });
 });
-const closeLb = () => { lightbox.hidden = true; };
-lightbox.addEventListener('click', (e) => { if (e.target !== lbImg) closeLb(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+
+lightbox.querySelector('.lightbox__prev').addEventListener('click', () => showLb(lbIndex - 1));
+lightbox.querySelector('.lightbox__next').addEventListener('click', () => showLb(lbIndex + 1));
+lightbox.querySelector('.lightbox__close').addEventListener('click', closeLb);
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLb(); });
+
+document.addEventListener('keydown', (e) => {
+  if (lightbox.hidden) return;
+  if (e.key === 'Escape') closeLb();
+  // الصفحة RTL: السهم الأيسر = التالي، الأيمن = السابق
+  else if (e.key === 'ArrowLeft') showLb(lbIndex + 1);
+  else if (e.key === 'ArrowRight') showLb(lbIndex - 1);
+  else if (e.key === 'Tab') {
+    const f = [...lightbox.querySelectorAll('button')];
+    const idx = f.indexOf(document.activeElement);
+    const next = e.shiftKey ? (idx <= 0 ? f.length - 1 : idx - 1) : (idx + 1) % f.length;
+    e.preventDefault(); f[next].focus();
+  }
+});
+
+// سحب باللمس على الموبايل
+let touchX = null;
+lightbox.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener('touchend', (e) => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 50) showLb(lbIndex + (dx > 0 ? 1 : -1));
+  touchX = null;
+});
