@@ -28,3 +28,8 @@
 - الخريطة: https://www.google.com/maps?q=29.5734766,31.2811211
 - فيسبوك: https://www.facebook.com/share/1cg9iE1Tck/
 - الموقع: https://alamana.win/
+
+## للوكلاء (AI agents)
+- [نسخة Markdown من الصفحة الرئيسية](https://alamana.win/index.md)
+- [مهارة طلب عرض سعر من الأمانة](https://alamana.win/.well-known/agent-skills/alamana-quote-request/SKILL.md)
+- [فهرس المهارات](https://alamana.win/.well-known/agent-skills/index.json)

@@ -1,0 +1,13 @@
+// إعدادات نشر alamana.win على Cloudflare Workers
+// النشر (من فولدر الموقع): npx --yes wrangler@4 deploy
+{
+  "name": "purple-boat-19ae",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-21",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    // الـWorker بيشتغل على الصفحة الرئيسية بس؛ باقي الملفات بتتخدم مباشرة من غير Worker
+    "run_worker_first": ["/"]
+  }
+}

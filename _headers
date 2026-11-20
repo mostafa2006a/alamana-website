@@ -12,3 +12,18 @@
 
 /js/*
   Cache-Control: public, max-age=31536000, immutable
+
+# ملاحظة: الصفحة الرئيسية "/" بيخدمها الـWorker (worker/index.js)، والملف ده مش بيتطبق عليها.
+# الـLink headers وهيدرز الأمان بتاعتها مكتوبة جوه الـWorker نفسه.
+
+# ملفات اكتشاف وكلاء الذكاء الاصطناعي: متاحة للقراءة من أي موقع (CORS)
+/.well-known/*
+  Access-Control-Allow-Origin: *
+
+/llms.txt
+  Access-Control-Allow-Origin: *
+
+# نسخة Markdown من الصفحة الرئيسية — الصفحة الأصلية في نتائج البحث هي "/"
+/index.md
+  Access-Control-Allow-Origin: *
+  Link: <https://alamana.win/>; rel="canonical"

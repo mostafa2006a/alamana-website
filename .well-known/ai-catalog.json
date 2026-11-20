@@ -1,0 +1,27 @@
+{
+  "specVersion": "0.9",
+  "host": {
+    "displayName": "الأمانة للتوريدات العمومية والمقاولات العمومية (ALAMANA)",
+    "identifier": "alamana.win",
+    "documentationUrl": "https://alamana.win/llms.txt",
+    "logoUrl": "https://alamana.win/assets/img/logo-round-512.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:alamana.win:skill:alamana-quote-request",
+      "displayName": "طلب عرض سعر من الأمانة (ALAMANA quote request)",
+      "type": "application/agent-skills+md",
+      "url": "https://alamana.win/.well-known/agent-skills/alamana-quote-request/SKILL.md",
+      "description": "Request a price quote from ALAMANA, an Egyptian contractor and supplier in Ain Sokhna and Galala: bucket-crusher rental or sale, on-site crushing, excavation, soil replacement, transport, equipment rental, stone pitching, and supply of aggregates, sand, cement, rubble and water.",
+      "tags": ["construction", "contractor", "bucket crusher", "aggregates", "Egypt", "Ain Sokhna", "Galala"],
+      "capabilities": ["QuoteRequest"],
+      "representativeQueries": [
+        "اطلب عرض سعر لتأجير باكيت كراشر في العين السخنة",
+        "عايز سعر إحلال تربة لمشروع في الجلالة",
+        "request a quote for on-site rock crushing in Ain Sokhna",
+        "who can deliver aggregates and water to a desert construction site near Ain Sokhna",
+        "rent a bucket crusher for an excavator in Egypt"
+      ]
+    }
+  ]
+}

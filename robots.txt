@@ -1,29 +1,20 @@
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 # السماح لمحركات بحث الذكاء الاصطناعي بقراءة الموقع
+# Content-Signal (contentsignals.org): search = الظهور في نتائج البحث،
+# ai-input = استخدام المحتوى كمرجع في إجابات الذكاء الاصطناعي، ai-train = التدريب.
+# لو مش عايز المحتوى يتستخدم في التدريب غيّر ai-train=yes لـ ai-train=no في السطرين.
 User-agent: GPTBot
-Allow: /
-
 User-agent: OAI-SearchBot
-Allow: /
-
 User-agent: ChatGPT-User
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
 User-agent: Claude-SearchBot
-Allow: /
-
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Google-Extended
-Allow: /
-
 User-agent: Applebot-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 Sitemap: https://alamana.win/sitemap.xml

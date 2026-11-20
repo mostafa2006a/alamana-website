@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "alamana-quote-request",
+      "type": "skill-md",
+      "description": "Request a price quote from ALAMANA (الأمانة للتوريدات العمومية والمقاولات العمومية), an Egyptian general contractor and building-materials supplier working mainly in Ain Sokhna and the Galala highlands. Use when a user wants a price for, or to order, the ALAMANA BF 90.3 bucket crusher (rent or buy), on-site rock crushing, excavation, soil replacement, site transport, equipment rental with operators, stone pitching and retaining walls, or delivery of aggregates, sand, cement, rubble, cement products or water to construction sites in Egypt.",
+      "url": "/.well-known/agent-skills/alamana-quote-request/SKILL.md",
+      "digest": "sha256:8a563e43d4d50dd57f0195bad9f40a1de06b8b029e600b4d95559b09ac4f55a6"
+    }
+  ]
+}

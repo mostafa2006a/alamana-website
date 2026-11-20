@@ -1,0 +1,3 @@
+# ملفات اكتشاف الوكلاء لازم تفضل بنهايات سطور LF على أي جهاز:
+# الـdigest في .well-known/agent-skills/index.json محسوب على بايتات SKILL.md بالظبط.
+/.well-known/** text eol=lf

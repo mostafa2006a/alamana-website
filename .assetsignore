@@ -3,3 +3,7 @@
 .nojekyll
 .git
 .gitignore
+.gitattributes
+node_modules
+worker
+wrangler.jsonc
